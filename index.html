@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шато Леон — Выбор дизайна сайта</title>
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); }
+        .preview-box {
+            background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+
+    <!-- Шапка -->
+    <header class="bg-white border-b border-slate-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="images/logo.jpg" alt="Шато Леон" class="w-12 h-12 rounded-full object-cover">
+                <div>
+                    <h1 class="text-xl font-bold text-slate-900 serif">Шато Леон</h1>
+                    <p class="text-xs text-slate-500">Выбор дизайна сайта</p>
+                </div>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="text-sm text-slate-500">Презентация для заказчика</p>
+                <p class="text-xs text-slate-400">5 вариантов на выбор</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный блок -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block px-4 py-1.5 bg-amber-100 text-amber-800 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+                Презентация дизайна
+            </span>
+            <h2 class="text-4xl md:text-6xl font-black text-slate-900 serif mb-6">
+                Какой сайт<br>вам ближе?
+            </h2>
+            <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Мы подготовили <strong>5 концепций</strong> дизайна сайта для кафе «Шато Леон». 
+                Откройте каждую и выберите ту, которая отражает вашу атмосферу.
+            </p>
+        </div>
+    </section>
+
+    <!-- Карточки вариантов -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Вариант 1: Классическая Италия -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <div class="preview-box h-48 flex items-center justify-center relative" style="--c1: #8B2C2C; --c2: #C09553;">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-wine-glass text-5xl mb-3 opacity-90"></i>
+                            <p class="serif text-2xl font-bold">Шато Леон</p>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-white/90 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Премиум
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-2">Классическая Италия</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Элегантный винтажный стиль. Бордовые, золотые и кремовые тона. 
+                            Атмосфера дорогого итальянского ресторана.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Элегантно</span>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">Премиум</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">Винтаж</span>
+                        </div>
+                        <a href="variant-1.html" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition">
+                            <i class="fa-solid fa-eye mr-2"></i>Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Вариант 2: Современный уют -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <div class="preview-box h-48 flex items-center justify-center relative" style="--c1: #2C4A3E; --c2: #C97B4B;">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-leaf text-5xl mb-3 opacity-90"></i>
+                            <p class="serif text-2xl font-bold">Шато Леон</p>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-white/90 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Современно
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-2">Современный уют</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Минимализм с тёплыми акцентами. Зелёные и терракотовые тона. 
+                            Модное городское кафе для офисов и молодёжи.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Современно</span>
+                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Уютно</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">Молодёжно</span>
+                        </div>
+                        <a href="variant-2.html" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition">
+                            <i class="fa-solid fa-eye mr-2"></i>Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Вариант 3: Семейная траттория -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <div class="preview-box h-48 flex items-center justify-center relative" style="--c1: #B83A2F; --c2: #F4B942;">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-utensils text-5xl mb-3 opacity-90"></i>
+                            <p class="serif text-2xl font-bold">Шато Леон</p>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-white/90 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Для всех
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-2">Семейная траттория</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Тёплый домашний стиль. Красный, жёлтый, деревянные тона. 
+                            Семейное место для гостей всех возрастов.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Тёплое</span>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Домашнее</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">Семейное</span>
+                        </div>
+                        <a href="variant-3.html" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition">
+                            <i class="fa-solid fa-eye mr-2"></i>Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Вариант 4: Универсальный -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <div class="preview-box h-48 flex items-center justify-center relative" style="--c1: #1a1a1a; --c2: #404040;">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-circle-check text-5xl mb-3 opacity-90"></i>
+                            <p class="serif text-2xl font-bold">Шато Леон</p>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-white/90 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Универсал
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-2">Универсальный</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Сдержанный, чистый стиль. Чёрно-белый с красным акцентом. 
+                            Подходит абсолютно всем типам гостей.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="text-xs bg-slate-100 text-slate-800 px-2 py-1 rounded">Минимализм</span>
+                            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Контраст</span>
+                            <span class="text-xs bg-slate-100 text-slate-700 px-2 py-1 rounded">Профи</span>
+                        </div>
+                        <a href="variant-4.html" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition">
+                            <i class="fa-solid fa-eye mr-2"></i>Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Вариант 5: Тосканский ретро -->
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+                    <div class="preview-box h-48 flex items-center justify-center relative" style="--c1: #A0522D; --c2: #DAA520;">
+                        <div class="text-center text-white">
+                            <i class="fa-solid fa-pizza-slice text-5xl mb-3 opacity-90"></i>
+                            <p class="serif text-2xl font-bold">Шато Леон</p>
+                        </div>
+                        <span class="absolute top-3 right-3 bg-white/90 text-slate-900 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Винтаж
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="serif text-2xl font-bold text-slate-900 mb-2">Тосканский ретро</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">
+                            Винтажная Италия 60-х. Терракотовый, оливковый, охра. 
+                            Атмосфера тосканской траттории из старого кино.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Винтаж</span>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Тоскана</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Ретро</span>
+                        </div>
+                        <a href="variant-5.html" target="_blank" class="block w-full text-center bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition">
+                            <i class="fa-solid fa-eye mr-2"></i>Посмотреть
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Карточка инструкции -->
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-2 border-amber-200 flex flex-col justify-center">
+                    <div class="text-center">
+                        <i class="fa-solid fa-lightbulb text-amber-500 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-amber-900 mb-3">Как выбрать?</h3>
+                        <ul class="text-left text-sm text-amber-900 space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+                                <span>Откройте каждый вариант в новой вкладке</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+                                <span>Посмотрите на ПК и на телефоне</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+                                <span>Выберите атмосферу, которая ближе</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-amber-600 mt-1"></i>
+                                <span>Можно совместить элементы из разных</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Информационный блок -->
+    <section class="bg-slate-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="serif text-3xl font-bold mb-4">Что дальше?</h3>
+            <p class="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
+                После выбора одного из вариантов мы доработаем его под ваши пожелания: 
+                заменим тексты на реальные, добавим фото блюд, подключим бронирование.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-slate-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-slate-900 font-black text-xl">1</span>
+                    </div>
+                    <h4 class="font-bold mb-2">Выбираете дизайн</h4>
+                    <p class="text-slate-400 text-sm">Один из 5 предложенных вариантов</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-slate-900 font-black text-xl">2</span>
+                    </div>
+                    <h4 class="font-bold mb-2">Дорабатываем</h4>
+                    <p class="text-slate-400 text-sm">Тексты, фото, ваши пожелания</p>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-xl">
+                    <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-slate-900 font-black text-xl">3</span>
+                    </div>
+                    <h4 class="font-bold mb-2">Запускаем</h4>
+                    <p class="text-slate-400 text-sm">Сайт готов к работе</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-slate-950 text-slate-500 py-8 text-center text-sm">
+        <p>Презентация дизайна сайта для кафе «Шато Леон»</p>
+        <p class="text-xs mt-2 text-slate-600">Внутренний документ. Не для публичного распространения.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шато Леон — Семейная траттория</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #C73E2A;
+            --primary-dark: #A02E1F;
+            --yellow: #F4B942;
+            --wood: #8B4513;
+            --wood-light: #D2A679;
+            --bg-warm: #FFF8E7;
+            --text-dark: #2B1810;
+        }
+        body { 
+            font-family: 'Nunito', sans-serif; 
+            background-color: var(--bg-warm); 
+            color: var(--text-dark);
+        }
+        .pacifico { font-family: 'Pacifico', cursive; }
+        .bg-primary { background-color: var(--primary); }
+        .bg-yellow { background-color: var(--yellow); }
+        .bg-wood { background-color: var(--wood); }
+        .bg-warm { background-color: var(--bg-warm); }
+        .text-primary { color: var(--primary); }
+        .text-yellow { color: var(--yellow); }
+        .text-wood { color: var(--wood); }
+        
+        /* Деревянная текстура (имитация) */
+        .wood-texture {
+            background: linear-gradient(180deg, #8B4513 0%, #A0522D 50%, #8B4513 100%);
+            position: relative;
+        }
+        .wood-texture::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(139, 69, 19, 0.3),
+                rgba(139, 69, 19, 0.3) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            pointer-events: none;
+        }
+        
+        .btn-warm {
+            background: var(--primary);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 var(--primary-dark);
+        }
+        .btn-warm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 var(--primary-dark);
+        }
+        .btn-warm:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--primary-dark);
+        }
+        
+        .btn-yellow {
+            background: var(--yellow);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #D49A2F;
+        }
+        .btn-yellow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #D49A2F;
+        }
+        
+        .card-warm {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 rgba(139, 69, 19, 0.15);
+        }
+        .card-warm:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 0 rgba(139, 69, 19, 0.2);
+        }
+        
+        /* Декоративные элементы */
+        .heart::before {
+            content: '♥';
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        .leaf-decor {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        /* Анимация покачивания */
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .wiggle { animation: wiggle 3s ease-in-out infinite; }
+        
+        /* Полосатый разделитель */
+        .divider-stripe {
+            background: repeating-linear-gradient(
+                45deg,
+                var(--primary),
+                var(--primary) 10px,
+                var(--yellow) 10px,
+                var(--yellow) 20px
+            );
+            height: 8px;
+        }
+        
+        /* Чекборд для меню */
+        .checkered {
+            background-image: 
+                linear-gradient(45deg, rgba(199, 62, 42, 0.05) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(199, 62, 42, 0.05) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(199, 62, 42, 0.05) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(199, 62, 42, 0.05) 75%);
+            background-size: 30px 30px;
+            background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-warm/95 backdrop-blur-sm shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="images/logo.jpg" alt="Шато Леон" class="w-12 h-12 rounded-full object-cover ring-4 ring-yellow">
+                    <div>
+                        <h1 class="text-xl font-black text-primary">Шато Леон</h1>
+                        <p class="pacifico text-base text-wood leading-none">семейная траттория</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="#about" class="text-sm font-bold hover:text-primary transition">О нас</a>
+                    <a href="#menu" class="text-sm font-bold hover:text-primary transition">Меню</a>
+                    <a href="#halls" class="text-sm font-bold hover:text-primary transition">Залы</a>
+                    <a href="#contacts" class="text-sm font-bold hover:text-primary transition">Контакты</a>
+                </nav>
+                
+                <a href="tel:+79502003095" class="btn-warm px-5 py-2.5 rounded-full text-sm font-black inline-flex items-center gap-2">
+                    <i class="fa-solid fa-phone"></i>
+                    <span class="hidden sm:inline">Позвонить</span>
+                </a>
+                
+                <button class="md:hidden text-2xl text-primary ml-3" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#about" class="block py-2 px-3 hover:bg-primary/10 rounded font-bold">О нас</a>
+                <a href="#menu" class="block py-2 px-3 hover:bg-primary/10 rounded font-bold">Меню</a>
+                <a href="#halls" class="block py-2 px-3 hover:bg-primary/10 rounded font-bold">Залы</a>
+                <a href="#contacts" class="block py-2 px-3 hover:bg-primary/10 rounded font-bold">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Полоска под шапкой -->
+    <div class="divider-stripe mt-20"></div>
+
+    <!-- Главный экран (Hero) -->
+    <section class="py-16 md:py-24 bg-warm relative overflow-hidden">
+        <!-- Декоративные элементы -->
+        <div class="leaf-decor top-10 left-10 text-9xl">🌿</div>
+        <div class="leaf-decor top-20 right-20 text-7xl">🍅</div>
+        <div class="leaf-decor bottom-10 left-1/4 text-8xl">🍝</div>
+        <div class="leaf-decor bottom-20 right-10 text-9xl">🌶️</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <div class="inline-block bg-yellow px-5 py-2 rounded-full mb-6 wiggle">
+                        <span class="font-black text-wood">🏠 Как дома, только вкуснее!</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-black text-primary leading-tight mb-4">
+                        Кафе для всей<br>
+                        <span class="pacifico text-yellow text-6xl md:text-8xl">семьи</span>
+                    </h1>
+                    
+                    <p class="text-lg text-wood mb-8 max-w-md leading-relaxed font-semibold">
+                        Тёплое место, где готовят с душой. Приходите всей семьёй или с друзьями — 
+                        у нас вкусно, уютно и всегда рады гостям!
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a href="#menu" class="btn-warm px-7 py-4 rounded-full font-black inline-flex items-center gap-2">
+                            <i class="fa-solid fa-utensils"></i>
+                            Посмотреть меню
+                        </a>
+                        <a href="tel:+79502003095" class="btn-yellow px-7 py-4 rounded-full font-black inline-flex items-center gap-2">
+                            <i class="fa-solid fa-phone"></i>
+                            Забронировать стол
+                        </a>
+                    </div>
+                    
+                    <!-- Бейджики "вкусняшки" -->
+                    <div class="flex flex-wrap gap-3 text-sm">
+                        <span class="bg-white px-4 py-2 rounded-full font-bold text-wood card-warm">
+                            🍲 Домашняя кухня
+                        </span>
+                        <span class="bg-white px-4 py-2 rounded-full font-bold text-wood card-warm">
+                            👨‍👩‍👧‍👦 Семейное меню
+                        </span>
+                        <span class="bg-white px-4 py-2 rounded-full font-bold text-wood card-warm">
+                            🎉 Банкеты
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative">
+                        <img src="images/hall-main.jpg" alt="Зал кафе" 
+                             class="rounded-3xl shadow-2xl w-full h-[500px] object-cover border-8 border-white">
+                        
+                        <!-- Стикеры на фото -->
+                        <div class="absolute -top-6 -left-6 bg-yellow p-4 rounded-2xl shadow-xl rotate-[-8deg] wiggle">
+                            <p class="pacifico text-2xl text-wood leading-none">обед всего</p>
+                            <p class="text-4xl font-black text-primary">220 ₽</p>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -right-6 bg-primary text-white p-5 rounded-2xl shadow-xl rotate-[5deg]">
+                            <div class="text-center">
+                                <div class="text-3xl">🦁</div>
+                                <p class="pacifico text-xl">с любовью</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Полоска-разделитель -->
+    <div class="divider-stripe"></div>
+
+    <!-- Преимущества -->
+    <section class="py-20 bg-white checkered">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="pacifico text-4xl text-yellow mb-2">наши плюсы</p>
+                <h2 class="text-4xl md:text-5xl font-black text-primary">
+                    Почему к нам приходят
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="card-warm bg-warm p-6 rounded-3xl text-center border-4 border-yellow">
+                    <div class="text-5xl mb-3">🍲</div>
+                    <h3 class="font-black text-lg text-primary mb-2">Вкусная кухня</h3>
+                    <p class="text-wood text-sm font-semibold">Европейская и русская</p>
+                </div>
+                
+                <div class="card-warm bg-warm p-6 rounded-3xl text-center border-4 border-yellow">
+                    <div class="text-5xl mb-3">🚗</div>
+                    <h3 class="font-black text-lg text-primary mb-2">Парковка</h3>
+                    <p class="text-wood text-sm font-semibold">20 машин у входа</p>
+                </div>
+                
+                <div class="card-warm bg-warm p-6 rounded-3xl text-center border-4 border-yellow">
+                    <div class="text-5xl mb-3">🎉</div>
+                    <h3 class="font-black text-lg text-primary mb-2">Праздники</h3>
+                    <p class="text-wood text-sm font-semibold">Банкеты до 50 чел.</p>
+                </div>
+                
+                <div class="card-warm bg-warm p-6 rounded-3xl text-center border-4 border-yellow">
+                    <div class="text-5xl mb-3">🚚</div>
+                    <h3 class="font-black text-lg text-primary mb-2">Доставка</h3>
+                    <p class="text-wood text-sm font-semibold">По Екатеринбургу</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="py-20 bg-warm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <img src="images/veranda.jpg" alt="Веранда" 
+                         class="rounded-3xl shadow-2xl w-full h-[450px] object-cover border-8 border-white">
+                    
+                    <div class="absolute -top-8 -right-8 bg-white p-6 rounded-full shadow-2xl border-4 border-yellow wiggle">
+                        <div class="text-center">
+                            <div class="text-4xl">⭐</div>
+                            <p class="pacifico text-lg text-primary leading-none mt-1">любим<br>гостей</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="pacifico text-4xl text-yellow mb-2">о нашем кафе</p>
+                    <h2 class="text-4xl md:text-5xl font-black text-primary mb-6 leading-tight">
+                        Место, где<br>гостям рады
+                    </h2>
+                    <p class="text-wood text-lg leading-relaxed mb-5 font-semibold">
+                        В «Шато Леон» приходят пообедать офисные работники, отдохнуть семьи с детьми, 
+                        провести юбилей или корпоратив. У нас есть место для каждого!
+                    </p>
+                    <p class="text-wood text-lg leading-relaxed mb-8 font-semibold">
+                        Уютная атмосфера, домашняя кухня, заботливое обслуживание — 
+                        мы делаем всё, чтобы вы возвращались снова и снова.
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-primary text-white p-5 rounded-2xl text-center">
+                            <div class="text-3xl font-black">220₽</div>
+                            <div class="text-xs mt-1 opacity-90">средний обед</div>
+                        </div>
+                        <div class="bg-yellow text-wood p-5 rounded-2xl text-center">
+                            <div class="text-3xl font-black">50</div>
+                            <div class="text-xs mt-1 font-bold">мест банкета</div>
+                        </div>
+                        <div class="bg-wood text-white p-5 rounded-2xl text-center">
+                            <div class="text-3xl font-black">2</div>
+                            <div class="text-xs mt-1 opacity-90">уютных зала</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section id="menu" class="py-20 wood-texture text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-14">
+                <p class="pacifico text-4xl text-yellow mb-2">наше меню</p>
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Что попробовать?
+                </h2>
+                <p class="text-yellow font-bold text-lg">
+                    Большой выбор блюд на любой вкус
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Карточки заглушек блюд -->
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🍲</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Супы</h3>
+                    <p class="text-wood mb-4 font-semibold">Борщ, солянка, лапша,<br>крем-супы</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 180 ₽
+                    </div>
+                </div>
+                
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🥗</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Салаты</h3>
+                    <p class="text-wood mb-4 font-semibold">Цезарь, оливье,<br>греческий и другие</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 150 ₽
+                    </div>
+                </div>
+                
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🍝</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Горячее</h3>
+                    <p class="text-wood mb-4 font-semibold">Паста, стейки, плов,<br>котлеты, рыба</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 250 ₽
+                    </div>
+                </div>
+                
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🥖</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Гарниры</h3>
+                    <p class="text-wood mb-4 font-semibold">Картошка, рис, гречка,<br>овощи гриль</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 80 ₽
+                    </div>
+                </div>
+                
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🍷</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Напитки</h3>
+                    <p class="text-wood mb-4 font-semibold">Морсы, соки, чай,<br>кофе, лимонады</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 80 ₽
+                    </div>
+                </div>
+                
+                <div class="card-warm bg-warm text-wood p-7 rounded-3xl text-center">
+                    <div class="text-6xl mb-3">🍰</div>
+                    <h3 class="text-2xl font-black text-primary mb-2">Десерты</h3>
+                    <p class="text-wood mb-4 font-semibold">Тирамису, чизкейк,<br>штрудель, мороженое</p>
+                    <div class="bg-yellow text-wood px-4 py-2 rounded-full inline-block font-black">
+                        от 120 ₽
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="pacifico text-3xl text-yellow mb-4">приходите кушать!</p>
+                <a href="tel:+79502003095" class="btn-yellow inline-flex items-center gap-2 px-8 py-4 rounded-full font-black text-lg">
+                    <i class="fa-solid fa-phone"></i> +7 (950) 200-30-95
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Полоска -->
+    <div class="divider-stripe"></div>
+
+    <!-- Залы -->
+    <section id="halls" class="py-20 bg-warm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="pacifico text-4xl text-yellow mb-2">наши залы</p>
+                <h2 class="text-4xl md:text-5xl font-black text-primary">
+                    Для любого праздника
+                </h2>
+                <p class="text-wood mt-4 font-bold text-lg">
+                    Свадьба, юбилей, корпоратив, день рождения — мы готовы!
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Веранда -->
+                <div class="card-warm bg-white rounded-3xl overflow-hidden border-4 border-yellow">
+                    <div class="relative h-80">
+                        <img src="images/veranda.jpg" alt="Веранда" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-yellow text-wood px-4 py-2 rounded-full font-black text-sm shadow-lg">
+                            🌿 Тёплая веранда
+                        </div>
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-black shadow-lg">
+                            5-25 человек
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl font-black text-primary mb-2">Веранда</h3>
+                        <p class="pacifico text-2xl text-yellow mb-5">для своих</p>
+                        
+                        <div class="space-y-3 mb-6 text-wood font-semibold">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">👥</span>
+                                <span>До <b>25 гостей</b></span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">💰</span>
+                                <span>От <b>2 700 ₽</b> с человека</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🎤</span>
+                                <span>Аренда: <b>3 000 ₽</b></span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">☀️</span>
+                                <span>Светлая, уютная</span>
+                            </div>
+                        </div>
+                        
+                        <a href="tel:+79502003095" class="btn-warm block w-full text-center py-3 rounded-full font-black">
+                            Забронировать веранду
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Основной зал -->
+                <div class="card-warm bg-white rounded-3xl overflow-hidden border-4 border-primary">
+                    <div class="relative h-80">
+                        <img src="images/hall-main.jpg" alt="Основной зал" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-primary text-white px-4 py-2 rounded-full font-black text-sm shadow-lg">
+                            🎉 Большой зал
+                        </div>
+                        <div class="absolute top-4 right-4 bg-yellow text-wood px-3 py-1 rounded-full text-xs font-black shadow-lg">
+                            20-50 человек
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl font-black text-primary mb-2">Основной зал</h3>
+                        <p class="pacifico text-2xl text-yellow mb-5">для больших праздников</p>
+                        
+                        <div class="space-y-3 mb-6 text-wood font-semibold">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">👥</span>
+                                <span>До <b>50 гостей</b></span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">💰</span>
+                                <span>От <b>2 700 ₽</b> с человека</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🎨</span>
+                                <span>Расписные потолки</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🎵</span>
+                                <span>Сцена, ТВ, музыка</span>
+                            </div>
+                        </div>
+                        
+                        <a href="tel:+79502003095" class="btn-warm block w-full text-center py-3 rounded-full font-black">
+                            Забронировать зал
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-yellow rounded-3xl p-6 text-center border-4 border-wood">
+                <p class="text-wood font-black text-lg">
+                    💡 Сервисный сбор — 13%. Минимальная стоимость закрытия — 9 000 ₽
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="py-20 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="pacifico text-4xl text-yellow mb-2">всё под ключ</p>
+                <h2 class="text-4xl md:text-5xl font-black">
+                    Что включено
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">🍷</div>
+                    <p class="font-black text-sm">Без пробкового сбора</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">🎀</div>
+                    <p class="font-black text-sm">Оформление зала</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">📺</div>
+                    <p class="font-black text-sm">ТВ и колонки</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">💡</div>
+                    <p class="font-black text-sm">Светомузыка</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">🍓</div>
+                    <p class="font-black text-sm">Свои фрукты</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">🥂</div>
+                    <p class="font-black text-sm">Свой алкоголь</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">📶</div>
+                    <p class="font-black text-sm">Wi-Fi бесплатно</p>
+                </div>
+                <div class="bg-white text-wood p-5 rounded-2xl text-center card-warm">
+                    <div class="text-3xl mb-2">🎤</div>
+                    <p class="font-black text-sm">DJ и ведущий*</p>
+                </div>
+            </div>
+            
+            <p class="text-center text-yellow text-sm mt-6 font-bold">
+                * DJ и ведущий — за дополнительную плату
+            </p>
+        </div>
+    </section>
+
+    <!-- Оплата -->
+    <section class="py-16 bg-warm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="pacifico text-4xl text-yellow mb-2">принимаем</p>
+            <h2 class="text-3xl md:text-4xl font-black text-primary mb-10">
+                Любые способы оплаты
+            </h2>
+            
+            <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <div class="bg-white p-7 rounded-3xl border-4 border-yellow card-warm">
+                    <div class="text-5xl mb-3">💵</div>
+                    <p class="font-black text-primary text-lg">Наличные</p>
+                </div>
+                <div class="bg-white p-7 rounded-3xl border-4 border-yellow card-warm">
+                    <div class="text-5xl mb-3">💳</div>
+                    <p class="font-black text-primary text-lg">Карта</p>
+                </div>
+                <div class="bg-white p-7 rounded-3xl border-4 border-yellow card-warm">
+                    <div class="text-5xl mb-3">📱</div>
+                    <p class="font-black text-primary text-lg">Безналичный</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Полоска -->
+    <div class="divider-stripe"></div>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-20 wood-texture text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <p class="pacifico text-4xl text-yellow mb-2">приходите!</p>
+                    <h2 class="text-4xl md:text-5xl font-black mb-8">
+                        Как нас найти
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-warm text-wood p-5 rounded-2xl flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-lg mb-1 text-primary">Наш адрес</h3>
+                                <p class="font-semibold">ул. Вилонова, 45 Е<br>2 этаж, Кировский район<br>Екатеринбург</p>
+                            </div>
+                        </div>
+                        
+                        <a href="tel:+79502003095" class="bg-yellow text-wood p-5 rounded-2xl flex items-start gap-4 card-warm cursor-pointer hover:bg-yellow-300 transition">
+                            <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-lg mb-1 text-primary">Звоните!</h3>
+                                <p class="text-2xl font-black text-primary">+7 (950) 200-30-95</p>
+                            </div>
+                        </a>
+                        
+                        <div class="bg-warm text-wood p-5 rounded-2xl flex items-start gap-4">
+                            <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-clock text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-lg mb-1 text-primary">Работаем</h3>
+                                <p class="font-semibold">Ежедневно с <b>09:00 до 17:00</b></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://yandex.ru/maps/org/shato_leon/27185352075/" target="_blank" class="btn-yellow inline-flex items-center gap-2 mt-8 px-7 py-4 rounded-full font-black">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Открыть в Яндекс.Картах
+                    </a>
+                </div>
+                
+                <div class="bg-warm rounded-3xl overflow-hidden h-[500px] border-8 border-white shadow-2xl">
+                    <iframe 
+                        src="https://yandex.ru/map-widget/v1/?ll=60.649649%2C56.866830&z=16&pt=60.649649%2C56.866830,pm2rdm" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-primary text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="images/logo.jpg" alt="Шато Леон" class="w-12 h-12 rounded-full ring-4 ring-yellow">
+                    <div>
+                        <p class="font-black text-xl">Шато Леон</p>
+                        <p class="pacifico text-lg text-yellow leading-none">с любовью к гостям</p>
+                    </div>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="font-bold">© 2026 Шато Леон</p>
+                    <p class="text-yellow text-sm mt-1 pacifico text-lg">сделано с ❤ в Екатеринбурге</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Закрывать мобильное меню при клике на ссылку
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шато Леон — Классическая Италия</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #8B2C2C;
+            --secondary: #C09553;
+            --bg-cream: #FDFBF7;
+            --text-dark: #1a1a1a;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-cream); }
+        .serif { font-family: 'Playfair Display', serif; }
+        .bg-primary { background-color: var(--primary); }
+        .text-primary { color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--secondary) 0%, #d4af37 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(192, 149, 83, 0.3); }
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(139, 44, 44, 0.8) 100%);
+        }
+        .card-shadow { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Шапка -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <img src="images/logo.jpg" alt="Шато Леон" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 serif">Шато Леон</h1>
+                        <p class="text-xs text-gray-500 tracking-widest uppercase">Cucina Italiana</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm font-medium hover:text-primary transition">О нас</a>
+                    <a href="#menu" class="text-sm font-medium hover:text-primary transition">Меню</a>
+                    <a href="#halls" class="text-sm font-medium hover:text-primary transition">Залы</a>
+                    <a href="#contacts" class="text-sm font-medium hover:text-primary transition">Контакты</a>
+                    <a href="tel:+79502003095" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-red-900 transition">
+                        <i class="fa-solid fa-phone mr-2"></i>Забронировать
+                    </a>
+                </nav>
+                <button class="md:hidden text-2xl text-primary">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран (Hero) -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Фоновое изображение (замени на фото основного зала) -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/hall-main.jpg" alt="Интерьер кафе" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0 z-10"></div>
+        </div>
+        
+        <div class="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
+            <p class="text-sm tracking-[0.3em] uppercase mb-4 opacity-90">Benvenuti a</p>
+            <h1 class="serif text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Шато Леон
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-95 font-light">
+                Итальянская кухня с душой и теплом уральского гостеприимства
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#halls" class="btn-gold px-8 py-4 rounded-full text-lg font-bold inline-block">
+                    <i class="fa-solid fa-utensils mr-2"></i>Посмотреть залы
+                </a>
+                <a href="tel:+79502003095" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-primary transition inline-block">
+                    <i class="fa-solid fa-calendar-days mr-2"></i>Забронировать стол
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#about" class="text-white opacity-70 hover:opacity-100">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <span class="text-primary font-bold tracking-widest uppercase text-sm">О нас</span>
+                    <h2 class="serif text-4xl md:text-5xl font-bold mt-2 mb-6 text-gray-900">
+                        Атмосфера настоящей Италии
+                    </h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        Кафе «Шато Леон» — это место, где итальянская элегантность встречается с уральским гостеприимством. 
+                        Мы создали пространство, в котором каждый гость чувствует себя как дома.
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Росписные потолки, тёплый свет, ароматы европейской кухни — всё создано для того, 
+                        чтобы вы чувствовали себя комфортно и особенно.
+                    </p>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary serif">10+</div>
+                            <div class="text-sm text-gray-500 mt-1">Лет опыта</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary serif">50+</div>
+                            <div class="text-sm text-gray-500 mt-1">Позиций в меню</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-primary serif">200</div>
+                            <div class="text-sm text-gray-500 mt-1">Посадочных мест</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="images/veranda.jpg" alt="Веранда кафе" class="rounded-2xl card-shadow w-full">
+                    <div class="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-xl card-shadow">
+                        <div class="text-4xl font-black serif">2014</div>
+                        <div class="text-sm tracking-widest uppercase">Год основания</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Меню (Заглушки) -->
+    <section id="menu" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-widest uppercase text-sm">Наша кухня</span>
+                <h2 class="serif text-4xl md:text-5xl font-bold mt-2 text-gray-900">
+                    Меню
+                </h2>
+                <p class="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
+                    Средний обед — 220 ₽. Богатый выбор блюд европейской и русской кухни
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Карточки заглушек -->
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-bowl-food text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="serif text-2xl font-bold mb-3">Супы</h3>
+                    <p class="text-gray-500 text-sm mb-4">Борщ, солянка, крем-супы...</p>
+                    <div class="text-primary font-bold">От 180 ₽</div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-drumstick-bite text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="serif text-2xl font-bold mb-3">Горячее</h3>
+                    <p class="text-gray-500 text-sm mb-4">Стейки, паста, плов...</p>
+                    <div class="text-primary font-bold">От 250 ₽</div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-leaf text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="serif text-2xl font-bold mb-3">Салаты</h3>
+                    <p class="text-gray-500 text-sm mb-4">Цезарь, оливье, греческий...</p>
+                    <div class="text-primary font-bold">От 150 ₽</div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition">
+                    Полное меню <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Залы -->
+    <section id="halls" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-widest uppercase text-sm">Пространство</span>
+                <h2 class="serif text-4xl md:text-5xl font-bold mt-2 text-gray-900">
+                    Залы для мероприятий
+                </h2>
+                <p class="text-gray-600 text-lg mt-4">Идеальное место для банкетов, свадеб и корпоративов</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Зал 1 -->
+                <div class="group relative overflow-hidden rounded-3xl card-shadow">
+                    <img src="images/veranda.jpg" alt="Тёплая веранда" class="w-full h-96 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-8">
+                        <div>
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full font-bold">Тёплая веранда</span>
+                            <h3 class="serif text-3xl font-bold text-white mt-3">Веранда</h3>
+                            <p class="text-white/90 mt-2">Вместимость: 5–25 человек</p>
+                            <p class="text-white/90">Аренда: от 3 000 ₽/час</p>
+                            <p class="text-white/90 text-sm mt-1">Мин. закрытие: 9 000 ₽</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Зал 2 -->
+                <div class="group relative overflow-hidden rounded-3xl card-shadow">
+                    <img src="images/hall-main.jpg" alt="Основной зал" class="w-full h-96 object-cover transition duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-8">
+                        <div>
+                            <span class="bg-primary text-white text-xs px-3 py-1 rounded-full font-bold">Основной зал</span>
+                            <h3 class="serif text-3xl font-bold text-white mt-3">Банкетный зал</h3>
+                            <p class="text-white/90 mt-2">Вместимость: 20–50 человек</p>
+                            <p class="text-white/90">Аренда: от 2 700 ₽/чел.</p>
+                            <p class="text-white/90 text-sm mt-1">Сервисный сбор: 13%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="py-24 bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-truck-fast text-2xl"></i>
+                    </div>
+                    <h3 class="serif text-xl font-bold mb-2">Своя доставка</h3>
+                    <p class="text-white/80 text-sm">Быстрая доставка по Екатеринбургу</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-car text-2xl"></i>
+                    </div>
+                    <h3 class="serif text-xl font-bold mb-2">Парковка 20 мест</h3>
+                    <p class="text-white/80 text-sm">Удобная парковка для гостей</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-tv text-2xl"></i>
+                    </div>
+                    <h3 class="serif text-xl font-bold mb-2">TV и Wi-Fi</h3>
+                    <p class="text-white/80 text-sm">Экраны и интернет в каждом зале</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-champagne-glasses text-2xl"></i>
+                    </div>
+                    <h3 class="serif text-xl font-bold mb-2">Свои напитки</h3>
+                    <p class="text-white/80 text-sm">Можно приносить свой алкоголь</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-24 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <span class="text-secondary font-bold tracking-widest uppercase text-sm">Контакты</span>
+                    <h2 class="serif text-4xl md:text-5xl font-bold mt-2 mb-8">
+                        Свяжитесь с нами
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Адрес</h3>
+                                <p class="text-gray-400">ул. Вилонова, 45Е (2 этаж)<br>Кировский район, Екатеринбург</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Телефон</h3>
+                                <p class="text-gray-400">+7 (950) 200-30-95</p>
+                                <p class="text-gray-400">Ежедневно: 09:00 – 17:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-envelope text-secondary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-1">Email</h3>
+                                <p class="text-gray-400">Пока нет (добавим позже)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-10 flex gap-4">
+                        <a href="https://yandex.ru/maps/org/shato_leon/..." target="_blank" class="bg-secondary hover:bg-yellow-600 text-white px-6 py-3 rounded-full font-bold transition inline-flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot"></i>Открыть в Яндекс.Картах
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-2xl overflow-hidden h-96 lg:h-auto">
+                    <!-- Заглушка карты -->
+                    <div class="w-full h-full bg-gray-700 flex items-center justify-center">
+                        <div class="text-center text-gray-400">
+                            <i class="fa-solid fa-map text-4xl mb-4 opacity-50"></i>
+                            <p>Карта Яндекс</p>
+                            <p class="text-sm">ул. Вилонова, 45Е</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-black text-gray-500 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <img src="images/logo.jpg" alt="Шато Леон" class="w-8 h-8 rounded-full">
+                <span class="serif text-white text-lg">Шато Леон</span>
+            </div>
+            <p class="text-sm">© 2024 Шато Леон. Все права защищены.</p>
+            <p class="text-xs mt-2 text-gray-600">Итальянская кухня в Екатеринбурге</p>
+        </div>
+    </footer>
+
+</body>
+</html>

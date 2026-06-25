@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шато Леон — Тосканский ретро</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700;800;900&family=Old+Standard+TT:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --terracotta: #A0522D;
+            --terracotta-dark: #7A3D1F;
+            --ochre: #DAA520;
+            --ochre-light: #E8C547;
+            --olive: #6B7F3F;
+            --olive-dark: #4A5A2A;
+            --cream: #F5E6D3;
+            --cream-dark: #E8D4B8;
+            --brown: #3E2723;
+            --paper: #FAF3E0;
+        }
+        body { 
+            font-family: 'Old Standard TT', serif; 
+            background-color: var(--paper);
+            color: var(--brown);
+        }
+        .bodoni { font-family: 'Bodoni Moda', serif; }
+        .cormorant { font-family: 'Cormorant Garamond', serif; }
+        .bg-terracotta { background-color: var(--terracotta); }
+        .bg-terracotta-dark { background-color: var(--terracotta-dark); }
+        .bg-ochre { background-color: var(--ochre); }
+        .bg-olive { background-color: var(--olive); }
+        .bg-cream { background-color: var(--cream); }
+        .bg-paper { background-color: var(--paper); }
+        .bg-brown { background-color: var(--brown); }
+        .text-terracotta { color: var(--terracotta); }
+        .text-ochre { color: var(--ochre); }
+        .text-olive { color: var(--olive); }
+        .text-brown { color: var(--brown); }
+        .text-cream { color: var(--cream); }
+        .border-terracotta { border-color: var(--terracotta); }
+        .border-ochre { border-color: var(--ochre); }
+        
+        /* Постер-эффект для главного фото */
+        .vintage-frame {
+            position: relative;
+            box-shadow: 
+                inset 0 0 100px rgba(62, 39, 35, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .vintage-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at center, transparent 30%, rgba(160, 82, 45, 0.3) 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent 0px,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        /* Сепия для фото */
+        .sepia {
+            filter: sepia(20%) saturate(110%) brightness(95%);
+        }
+        
+        /* Винтажная рамка */
+        .vintage-border {
+            border: 2px solid var(--terracotta);
+            position: relative;
+            padding: 8px;
+        }
+        .vintage-border::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid var(--terracotta);
+            pointer-events: none;
+        }
+        
+        /* Винтажная кнопка */
+        .btn-vintage {
+            background: var(--terracotta);
+            color: var(--paper);
+            transition: all 0.3s ease;
+            border: 2px solid var(--terracotta);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-vintage:hover {
+            background: transparent;
+            color: var(--terracotta);
+        }
+        
+        .btn-ochre {
+            background: var(--ochre);
+            color: var(--brown);
+            transition: all 0.3s ease;
+            border: 2px solid var(--ochre);
+        }
+        .btn-ochre:hover {
+            background: var(--ochre-light);
+        }
+        
+        /* Винтажный разделитель с орнаментом */
+        .vintage-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .vintage-divider::before,
+        .vintage-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--terracotta);
+            opacity: 0.4;
+        }
+        .vintage-divider-symbol {
+            color: var(--terracotta);
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+        
+        /* Текстура бумаги */
+        .paper-texture {
+            background-color: var(--paper);
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(160, 82, 45, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        
+        /* Постер фон */
+        .poster-bg {
+            background: 
+                linear-gradient(135deg, rgba(160, 82, 45, 0.9) 0%, rgba(122, 61, 31, 0.95) 100%);
+            position: relative;
+        }
+        .poster-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(218, 165, 32, 0.05) 40px,
+                    rgba(218, 165, 32, 0.05) 80px
+                );
+            pointer-events: none;
+        }
+        
+        /* Винтажный значок */
+        .stamp {
+            display: inline-block;
+            border: 3px double currentColor;
+            padding: 8px 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            transform: rotate(-5deg);
+        }
+        
+        /* Анимация при появлении */
+        @keyframes vintage-fade {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .vintage-fade { animation: vintage-fade 1s ease forwards; }
+        
+        /* Декоративные орнаменты */
+        .ornament-corner::before,
+        .ornament-corner::after {
+            content: '❦';
+            color: var(--ochre);
+            font-size: 1.5rem;
+            position: absolute;
+            opacity: 0.4;
+        }
+        .ornament-corner::before {
+            top: -10px;
+            left: -10px;
+        }
+        .ornament-corner::after {
+            bottom: -10px;
+            right: -10px;
+            transform: rotate(180deg);
+        }
+        
+        /* Карточки винтажные */
+        .vintage-card {
+            background: var(--paper);
+            border: 2px solid var(--terracotta);
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0 var(--terracotta);
+        }
+        .vintage-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--terracotta);
+        }
+        
+        /* Линия с орнаментом */
+        .ornate-line {
+            height: 20px;
+            background-image: 
+                linear-gradient(90deg, transparent 50%, var(--terracotta) 50%),
+                linear-gradient(90deg, var(--terracotta) 50%, transparent 50%);
+            background-size: 4px 1px;
+            background-position: 0 50%;
+            background-repeat: repeat-x;
+            position: relative;
+        }
+        .ornate-line::before {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--paper);
+            padding: 0 12px;
+            color: var(--terracotta);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body class="paper-texture">
+
+    <!-- Шапка -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-paper border-b-2 border-terracotta shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="images/logo.jpg" alt="Шато Леон" class="w-12 h-12 rounded-full object-cover sepia border-2 border-terracotta">
+                    <div>
+                        <h1 class="bodoni text-2xl font-bold text-terracotta tracking-wide">Шато Леон</h1>
+                        <p class="text-xs text-olive uppercase tracking-[0.3em]">Trattoria · 2014</p>
+                    </div>
+                </a>
+                
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="cormorant text-base font-bold hover:text-terracotta transition italic">О нас</a>
+                    <span class="text-terracotta opacity-30">◆</span>
+                    <a href="#menu" class="cormorant text-base font-bold hover:text-terracotta transition italic">Меню</a>
+                    <span class="text-terracotta opacity-30">◆</span>
+                    <a href="#halls" class="cormorant text-base font-bold hover:text-terracotta transition italic">Залы</a>
+                    <span class="text-terracotta opacity-30">◆</span>
+                    <a href="#contacts" class="cormorant text-base font-bold hover:text-terracotta transition italic">Контакты</a>
+                </nav>
+                
+                <a href="tel:+79502003095" class="btn-vintage px-5 py-2.5 text-sm font-bold inline-flex items-center gap-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span class="hidden sm:inline">Бронь</span>
+                </a>
+                
+                <button class="md:hidden text-2xl text-terracotta ml-3" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2 border-t border-terracotta pt-3 mt-2">
+                <a href="#about" class="block py-2 px-3 hover:bg-cream cormorant text-lg italic">О нас</a>
+                <a href="#menu" class="block py-2 px-3 hover:bg-cream cormorant text-lg italic">Меню</a>
+                <a href="#halls" class="block py-2 px-3 hover:bg-cream cormorant text-lg italic">Залы</a>
+                <a href="#contacts" class="block py-2 px-3 hover:bg-cream cormorant text-lg italic">Контакты</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Главный экран (Hero) -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 paper-texture">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="vintage-fade">
+                    <div class="mb-6">
+                        <p class="cormorant italic text-2xl text-olive">— Benvenuti a —</p>
+                    </div>
+                    
+                    <h1 class="bodoni text-6xl md:text-8xl font-black text-terracotta leading-[0.9] mb-2">
+                        Шато
+                    </h1>
+                    <h1 class="bodoni text-6xl md:text-8xl font-black text-brown italic leading-[0.9] mb-6">
+                        Леон
+                    </h1>
+                    
+                    <div class="ornate-line my-8"></div>
+                    
+                    <p class="cormorant text-2xl text-brown italic mb-6 leading-relaxed">
+                        «Дом, где гости становятся друзьями.<br>
+                        Кухня, которая помнит традиции.»
+                    </p>
+                    
+                    <p class="text-brown text-lg mb-10 max-w-md leading-relaxed">
+                        Итальянская атмосфера, европейская и русская кухня. 
+                        Кафе и банкетный зал в Екатеринбурге.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a href="tel:+79502003095" class="btn-vintage px-8 py-4 font-bold uppercase tracking-widest text-sm">
+                            <i class="fa-solid fa-phone mr-2"></i>
+                            Забронировать стол
+                        </a>
+                        <a href="#menu" class="btn-ochre px-8 py-4 font-bold uppercase tracking-widest text-sm">
+                            <i class="fa-solid fa-book mr-2"></i>
+                            Посмотреть меню
+                        </a>
+                    </div>
+                    
+                    <!-- Винтажная подпись -->
+                    <div class="flex items-center gap-6 text-sm">
+                        <div>
+                            <p class="cormorant italic text-olive text-xs uppercase tracking-widest">Estd.</p>
+                            <p class="bodoni text-2xl font-bold text-terracotta">2014</p>
+                        </div>
+                        <div class="w-px h-12 bg-terracotta opacity-30"></div>
+                        <div>
+                            <p class="cormorant italic text-olive text-xs uppercase tracking-widest">Aperto</p>
+                            <p class="bodoni text-xl font-bold text-terracotta">09:00 — 17:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative vintage-fade">
+                    <!-- Постер-фрейм -->
+                    <div class="vintage-frame">
+                        <img src="images/hall-main.jpg" alt="Главный зал" 
+                             class="w-full h-[600px] object-cover sepia">
+                    </div>
+                    
+                    <!-- Винтажный штамп -->
+                    <div class="absolute -top-6 -right-6 bg-paper p-4 rounded-full border-4 border-double border-terracotta shadow-2xl rotate-12">
+                        <div class="stamp text-terracotta text-xs">
+                            Premium<br>Italian<br>Cuisine
+                        </div>
+                    </div>
+                    
+                    <!-- Подпись внизу -->
+                    <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-cream px-8 py-3 border-2 border-terracotta">
+                        <p class="cormorant italic text-terracotta text-center">
+                            <span class="text-sm">vol. I · no. 1</span><br>
+                            <span class="bodoni text-2xl font-bold">Buon Appetito!</span>
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Винтажный разделитель -->
+    <div class="vintage-divider">
+        <span class="vintage-divider-symbol">❦</span>
+    </div>
+
+    <!-- Преимущества (как карточки старого меню) -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="cormorant italic text-2xl text-olive mb-2">— Le nostre virtù —</p>
+                <h2 class="bodoni text-4xl md:text-5xl font-black text-terracotta">
+                    Наши достоинства
+                </h2>
+                <div class="ornate-line max-w-md mx-auto mt-6"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="vintage-card p-6 text-center">
+                    <div class="text-5xl text-terracotta mb-3">🍝</div>
+                    <h3 class="bodoni text-xl font-bold text-terracotta mb-2">Кухня</h3>
+                    <div class="ornate-line my-2 max-w-[60%] mx-auto"></div>
+                    <p class="cormorant italic text-brown">Европейская<br>и русская</p>
+                </div>
+                
+                <div class="vintage-card p-6 text-center">
+                    <div class="text-5xl text-terracotta mb-3">🚗</div>
+                    <h3 class="bodoni text-xl font-bold text-terracotta mb-2">Парковка</h3>
+                    <div class="ornate-line my-2 max-w-[60%] mx-auto"></div>
+                    <p class="cormorant italic text-brown">На 20 машин<br>у входа</p>
+                </div>
+                
+                <div class="vintage-card p-6 text-center">
+                    <div class="text-5xl text-terracotta mb-3">🎭</div>
+                    <h3 class="bodoni text-xl font-bold text-terracotta mb-2">Банкеты</h3>
+                    <div class="ornate-line my-2 max-w-[60%] mx-auto"></div>
+                    <p class="cormorant italic text-brown">Торжества<br>до 50 гостей</p>
+                </div>
+                
+                <div class="vintage-card p-6 text-center">
+                    <div class="text-5xl text-terracotta mb-3">🚚</div>
+                    <h3 class="bodoni text-xl font-bold text-terracotta mb-2">Доставка</h3>
+                    <div class="ornate-line my-2 max-w-[60%] mx-auto"></div>
+                    <p class="cormorant italic text-brown">По всему<br>Екатеринбургу</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="py-20 bg-paper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="order-2 lg:order-1">
+                    <p class="cormorant italic text-2xl text-olive mb-2">— La nostra storia —</p>
+                    <h2 class="bodoni text-5xl md:text-6xl font-black text-terracotta mb-6 leading-tight">
+                        Наша<br>
+                        <span class="italic text-brown">история</span>
+                    </h2>
+                    
+                    <div class="ornate-line max-w-xs mb-8"></div>
+                    
+                    <p class="cormorant italic text-2xl text-brown leading-relaxed mb-6">
+                        «Шато Леон» — это место, созданное с любовью к традициям итальянской кухни 
+                        и уральскому гостеприимству.
+                    </p>
+                    
+                    <p class="text-brown text-lg leading-relaxed mb-6">
+                        Уютные залы, домашняя атмосфера, тёплое обслуживание — 
+                        всё, что нужно для приятного обеда, семейного ужина 
+                        или большого торжества.
+                    </p>
+                    
+                    <p class="text-brown text-lg leading-relaxed mb-10">
+                        Мы принимаем гостей с улицы, обслуживаем офисы и детские группы. 
+                        У нас рады каждому.
+                    </p>
+                    
+                    <!-- Винтажная подпись -->
+                    <div class="border-t-2 border-terracotta pt-6 max-w-md">
+                        <p class="cormorant italic text-2xl text-terracotta">— Виктория, ваш хозяин</p>
+                    </div>
+                </div>
+                
+                <div class="order-1 lg:order-2 relative">
+                    <div class="vintage-frame">
+                        <img src="images/veranda.jpg" alt="Веранда" 
+                             class="w-full h-[600px] object-cover sepia">
+                    </div>
+                    
+                    <!-- Дата постер -->
+                    <div class="absolute -bottom-8 -left-8 bg-ochre p-5 border-4 border-brown shadow-2xl -rotate-6">
+                        <div class="text-center">
+                            <p class="cormorant italic text-brown text-xs uppercase tracking-widest">Anno</p>
+                            <p class="bodoni text-5xl font-black text-brown">2014</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section id="menu" class="py-20 poster-bg text-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-14">
+                <p class="cormorant italic text-2xl text-ochre-light mb-2">— Il Menù —</p>
+                <h2 class="bodoni text-5xl md:text-6xl font-black mb-4">
+                    Меню заведения
+                </h2>
+                
+                <div class="ornate-line max-w-md mx-auto my-6" style="background-image: linear-gradient(90deg, transparent 50%, var(--ochre) 50%), linear-gradient(90deg, var(--ochre) 50%, transparent 50%);"></div>
+                
+                <p class="cormorant italic text-2xl text-cream">
+                    Pranzo medio · средний обед · <span class="bodoni font-bold text-ochre-light">220 ₽</span>
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 01</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🍲</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Zuppe</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Супы</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Борщ, солянка, лапша,<br>крем-супы</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">180 ₽</p>
+                    </div>
+                </div>
+                
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 02</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🥗</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Insalate</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Салаты</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Цезарь, оливье,<br>греческий и другие</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">150 ₽</p>
+                    </div>
+                </div>
+                
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 03</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🍝</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Secondi</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Горячее</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Паста, стейки, плов,<br>котлеты, рыба</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">250 ₽</p>
+                    </div>
+                </div>
+                
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 04</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🥖</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Contorni</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Гарниры</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Картофель, рис,<br>гречка, овощи гриль</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">80 ₽</p>
+                    </div>
+                </div>
+                
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 05</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🍷</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Bevande</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Напитки</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Морсы, соки, чай,<br>кофе, лимонады</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">80 ₽</p>
+                    </div>
+                </div>
+                
+                <div class="bg-paper text-brown p-7 vintage-border relative">
+                    <p class="absolute top-4 right-4 cormorant italic text-sm text-olive">№ 06</p>
+                    <div class="text-center">
+                        <div class="text-5xl text-terracotta mb-4">🍰</div>
+                        <h3 class="bodoni text-3xl font-bold text-terracotta mb-2">Dolci</h3>
+                        <p class="cormorant italic text-lg text-brown mb-1">Десерты</p>
+                        <div class="ornate-line my-4 max-w-[60%] mx-auto"></div>
+                        <p class="text-sm text-brown mb-4">Тирамису, чизкейк,<br>штрудель, мороженое</p>
+                        <p class="cormorant italic text-olive text-sm">от</p>
+                        <p class="bodoni text-3xl font-black text-terracotta">120 ₽</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="cormorant italic text-2xl text-ochre-light mb-4">— Buon appetito! —</p>
+                <a href="tel:+79502003095" class="btn-ochre px-8 py-4 font-bold uppercase tracking-widest text-sm">
+                    <i class="fa-solid fa-phone mr-2"></i> +7 (950) 200-30-95
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Залы -->
+    <section id="halls" class="py-20 bg-paper">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="cormorant italic text-2xl text-olive mb-2">— Le nostre sale —</p>
+                <h2 class="bodoni text-5xl md:text-6xl font-black text-terracotta">
+                    Залы для торжеств
+                </h2>
+                <div class="ornate-line max-w-md mx-auto mt-6"></div>
+                <p class="cormorant italic text-2xl text-brown mt-6">
+                    Два уютных пространства, две атмосферы
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-10">
+                <!-- Веранда -->
+                <div class="bg-cream border-4 border-double border-terracotta p-8 relative">
+                    <!-- Винтажный заголовок -->
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-paper px-6 py-2 border-2 border-terracotta">
+                        <p class="cormorant italic text-terracotta">Sala № 1</p>
+                    </div>
+                    
+                    <div class="vintage-frame mb-6">
+                        <img src="images/veranda.jpg" alt="Веранда" 
+                             class="w-full h-72 object-cover sepia">
+                    </div>
+                    
+                    <h3 class="bodoni text-4xl font-black text-terracotta text-center mb-2">Веранда</h3>
+                    <p class="cormorant italic text-2xl text-olive text-center mb-6">— Тёплая, уютная —</p>
+                    
+                    <div class="ornate-line my-6"></div>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Вместимость</span>
+                            <span class="bodoni font-bold text-terracotta">5 – 25 гостей</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Стоимость</span>
+                            <span class="bodoni font-bold text-terracotta">от 2 700 ₽/чел.</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Аренда без еды</span>
+                            <span class="bodoni font-bold text-terracotta">3 000 ₽</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="cormorant italic text-brown">Конференции</span>
+                            <span class="bodoni font-bold text-terracotta">3 000 ₽/час</span>
+                        </div>
+                    </div>
+                    
+                    <a href="tel:+79502003095" class="btn-vintage block text-center w-full py-3 font-bold uppercase tracking-widest text-sm">
+                        Забронировать
+                    </a>
+                </div>
+                
+                <!-- Основной зал -->
+                <div class="bg-cream border-4 border-double border-terracotta p-8 relative">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-paper px-6 py-2 border-2 border-terracotta">
+                        <p class="cormorant italic text-terracotta">Sala № 2</p>
+                    </div>
+                    
+                    <div class="vintage-frame mb-6">
+                        <img src="images/hall-main.jpg" alt="Основной зал" 
+                             class="w-full h-72 object-cover sepia">
+                    </div>
+                    
+                    <h3 class="bodoni text-4xl font-black text-terracotta text-center mb-2">Основной зал</h3>
+                    <p class="cormorant italic text-2xl text-olive text-center mb-6">— Главный, торжественный —</p>
+                    
+                    <div class="ornate-line my-6"></div>
+                    
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Вместимость</span>
+                            <span class="bodoni font-bold text-terracotta">20 – 50 гостей</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Стоимость</span>
+                            <span class="bodoni font-bold text-terracotta">от 2 700 ₽/чел.</span>
+                        </div>
+                        <div class="flex items-center justify-between border-b border-dashed border-terracotta pb-2">
+                            <span class="cormorant italic text-brown">Особенности</span>
+                            <span class="bodoni font-bold text-terracotta">Расписные потолки</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="cormorant italic text-brown">Оборудование</span>
+                            <span class="bodoni font-bold text-terracotta">ТВ, сцена, музыка</span>
+                        </div>
+                    </div>
+                    
+                    <a href="tel:+79502003095" class="btn-vintage block text-center w-full py-3 font-bold uppercase tracking-widest text-sm">
+                        Забронировать
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-cream border-2 border-terracotta p-6 text-center">
+                <p class="cormorant italic text-xl text-brown">
+                    <strong class="bodoni text-terracotta">Servizio:</strong> сервисный сбор 13%. 
+                    <strong class="bodoni text-terracotta">Minimo:</strong> 9 000 ₽ для закрытия зала.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="py-20 bg-olive text-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="cormorant italic text-2xl text-ochre-light mb-2">— Tutto compreso —</p>
+                <h2 class="bodoni text-4xl md:text-5xl font-black">
+                    Всё включено
+                </h2>
+                <div class="ornate-line max-w-md mx-auto mt-6" style="background-image: linear-gradient(90deg, transparent 50%, var(--ochre) 50%), linear-gradient(90deg, var(--ochre) 50%, transparent 50%);"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Без пробкового сбора</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Оформление зала</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">ТВ и колонки</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Светомузыка</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Свои фрукты</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Свой алкоголь</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">Wi-Fi гостям</p>
+                </div>
+                <div class="bg-paper text-brown p-5 text-center border-2 border-ochre">
+                    <i class="fa-solid fa-circle-check text-terracotta text-2xl mb-2"></i>
+                    <p class="cormorant italic text-sm font-bold">DJ и ведущий*</p>
+                </div>
+            </div>
+            
+            <p class="text-center text-ochre-light cormorant italic text-lg mt-6">
+                * Diventa, presentatore — по запросу за дополнительную плату
+            </p>
+        </div>
+    </section>
+
+    <!-- Оплата -->
+    <section class="py-16 bg-cream">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="cormorant italic text-2xl text-olive mb-2">— Pagamento —</p>
+            <h2 class="bodoni text-4xl font-black text-terracotta mb-10">
+                Способы оплаты
+            </h2>
+            
+            <div class="ornate-line max-w-md mx-auto mb-10"></div>
+            
+            <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
+                <div class="vintage-card p-7">
+                    <i class="fa-solid fa-money-bill-1-wave text-terracotta text-4xl mb-3"></i>
+                    <p class="bodoni font-bold text-terracotta">Contanti</p>
+                    <p class="cormorant italic text-brown text-sm">Наличные</p>
+                </div>
+                <div class="vintage-card p-7">
+                    <i class="fa-solid fa-credit-card text-terracotta text-4xl mb-3"></i>
+                    <p class="bodoni font-bold text-terracotta">Carta</p>
+                    <p class="cormorant italic text-brown text-sm">Банковская карта</p>
+                </div>
+                <div class="vintage-card p-7">
+                    <i class="fa-solid fa-mobile-screen-button text-terracotta text-4xl mb-3"></i>
+                    <p class="bodoni font-bold text-terracotta">Bancario</p>
+                    <p class="cormorant italic text-brown text-sm">Безналичный</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="py-20 bg-terracotta-dark text-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <p class="cormorant italic text-2xl text-ochre-light mb-2">— Contatti —</p>
+                    <h2 class="bodoni text-5xl md:text-6xl font-black mb-8 leading-tight">
+                        Как нас<br>
+                        <span class="italic">найти</span>
+                    </h2>
+                    
+                    <div class="ornate-line max-w-xs mb-10" style="background-image: linear-gradient(90deg, transparent 50%, var(--ochre) 50%), linear-gradient(90deg, var(--ochre) 50%, transparent 50%);"></div>
+                    
+                    <div class="space-y-5">
+                        <div class="bg-paper text-brown p-6 border-2 border-ochre">
+                            <p class="cormorant italic text-olive text-sm uppercase tracking-widest mb-1">— Indirizzo —</p>
+                            <p class="bodoni text-2xl font-bold text-terracotta">ул. Вилонова, 45 Е</p>
+                            <p class="cormorant italic text-lg">2 этаж, Кировский район</p>
+                            <p class="cormorant italic text-lg">Екатеринбург</p>
+                        </div>
+                        
+                        <a href="tel:+79502003095" class="block bg-ochre text-brown p-6 border-2 border-brown hover:bg-ochre-light transition cursor-pointer">
+                            <p class="cormorant italic text-brown text-sm uppercase tracking-widest mb-1">— Telefono —</p>
+                            <p class="bodoni text-3xl font-black">+7 (950) 200-30-95</p>
+                        </a>
+                        
+                        <div class="bg-paper text-brown p-6 border-2 border-ochre">
+                            <p class="cormorant italic text-olive text-sm uppercase tracking-widest mb-1">— Orario —</p>
+                            <p class="bodoni text-2xl font-bold text-terracotta">09:00 — 17:00</p>
+                            <p class="cormorant italic text-lg">Tutti i giorni · Ежедневно</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://yandex.ru/maps/org/shato_leon/27185352075/" target="_blank" 
+                       class="btn-ochre inline-flex items-center gap-2 mt-8 px-7 py-4 font-bold uppercase tracking-widest text-sm">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Открыть в Яндекс.Картах
+                    </a>
+                </div>
+                
+                <div class="vintage-frame">
+                    <iframe 
+                        src="https://yandex.ru/map-widget/v1/?ll=60.649649%2C56.866830&z=16&pt=60.649649%2C56.866830,pm2rdm" 
+                        width="100%" 
+                        height="600" 
+                        frameborder="0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-brown text-cream py-12 border-t-4 border-double border-ochre">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <img src="images/logo.jpg" alt="Шато Леон" class="w-14 h-14 rounded-full border-2 border-ochre sepia">
+                <div class="text-left">
+                    <h3 class="bodoni text-3xl font-black text-ochre">Шато Леон</h3>
+                    <p class="cormorant italic text-cream">— Trattoria · Estd. 2014 —</p>
+                </div>
+            </div>
+            
+            <div class="ornate-line max-w-md mx-auto my-6" style="background-image: linear-gradient(90deg, transparent 50%, var(--ochre) 50%), linear-gradient(90deg, var(--ochre) 50%, transparent 50%);"></div>
+            
+            <p class="cormorant italic text-xl text-ochre-light mb-2">
+                «Grazie per la vostra visita»
+            </p>
+            <p class="cormorant italic text-cream">Благодарим за ваш визит</p>
+            
+            <p class="text-sm text-cream mt-6 opacity-70">
+                © 2026 Шато Леон. Все права защищены. · Екатеринбург
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
